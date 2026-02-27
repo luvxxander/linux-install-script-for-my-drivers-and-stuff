@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+START_DIR="$PWD"
+
 sudo pacman -Syu --noconfirm
 
 sudo sed -i '/\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
@@ -49,5 +51,12 @@ google-chrome \
 fastfetch \
 gamemode \
 mangohud
+
+cd "$START_DIR"
+rm -rf ctOS
+git clone https://github.com/TSM-061/ctOS.git
+cd ctOS
+chmod +x install.sh
+./install.sh
 
 echo Done
